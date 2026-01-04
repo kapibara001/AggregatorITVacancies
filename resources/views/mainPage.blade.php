@@ -10,10 +10,14 @@
 <body>
     <div class="container">
         @include('layouts.navigation')  
-        <!-- Вакансии -->
+        <!-- Vacancies -->
          
-        <!-- Футер  -->
-         
+        <!-- Footer  -->
+
     </div>
+
+    <script>
+        // Code for view window-offer to register/login
+    </script>
 </body>
 </html>

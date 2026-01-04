@@ -18,8 +18,8 @@
             <a href="">О проекте</a>
 
             @guest
-                <a href="" class="">Войти</a>
-                <a href="" class="">Регистрация</a>
+                <a href="" class="login">Войти</a>
+                <a href="" class="register">Регистрация</a>
             @else
                 <a href="" class="">Профиль</a>
             @endguest

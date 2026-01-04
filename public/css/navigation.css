@@ -76,3 +76,24 @@ header {
 .links a:hover {
     color: rgba(229, 255, 0, 0.575);
 }
+
+.login, .register {
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.login {
+    background-color: green;
+    
+}
+
+.register {
+    background-color: rgb(129, 0, 0);
+}
+
+@media (width < 1050px) {
+    header {
+        padding: 0 20px;;
+    }
+}

@@ -1,3 +1,9 @@
 body {
     margin: 0 !important;
 }
+
+@media (width < 1000px) {
+    body {
+        display: none;
+    }
+}
