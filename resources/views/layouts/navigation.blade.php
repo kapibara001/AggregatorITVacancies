@@ -16,7 +16,6 @@
         </button>
 
         <nav id="main-nav" class="links" role="navigation">
-            <a href="#" class="nav-link">Главная</a>
             <a href="#" class="nav-link">Вакансии</a>
             <a href="#" class="nav-link">Компании</a>
             <a href="#" class="nav-link">О проекте</a>
