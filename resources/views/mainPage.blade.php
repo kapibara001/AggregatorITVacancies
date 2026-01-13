@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="{{ asset('css/navigationPanel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mainPage.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footerPanel.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/vacancies.css') }}">
 </head>
 <body>
     <div class="container">
         @include('layouts.navigation')  
         <!-- Vacancies -->
-         
+        @include('layouts.vacancies')
         <hr>
         <!-- Footer  -->
         @include('layouts.footer')

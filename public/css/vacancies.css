@@ -1,0 +1,66 @@
+:root {
+    --container-max: 1100px;
+    --gap: 16px;
+    --bg: #000;
+    --card-bg: #0f1720;
+    --text: #ffffff;
+}
+
+.vacancies-container {
+    max-width: 100%;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.vacancies-content {
+    width: var(--container-max);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--gap);
+    padding: 16px;
+    color: var(--text);
+    box-sizing: border-box;
+}
+
+.vacancy {
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width: 1100px) {
+    .vacancies-content { 
+        grid-template-columns: repeat(4, 1fr); 
+    }
+}
+
+@media (max-width: 900px) {
+    .vacancies-content { 
+        grid-template-columns: repeat(3, 1fr); 
+    }
+}
+
+@media (max-width: 768px) {
+    .vacancies-container { 
+        padding: 16px 8px; 
+    }
+    .vacancies-content { 
+        grid-template-columns: repeat(2, 1fr); width: 100%; 
+    }
+}
+
+@media (max-width: 480px) {
+    .vacancies-content { 
+        grid-template-columns: 1fr; padding: 8px; 
+    }
+    .vacancy-item { 
+        padding: 10px; min-height: auto; 
+    }
+}
