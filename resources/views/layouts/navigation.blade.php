@@ -18,7 +18,7 @@
         <nav id="main-nav" class="links" role="navigation">
             <a href="#" class="nav-link">Вакансии</a>
             <a href="#" class="nav-link">Компании</a>
-            <a href="#" class="nav-link">О проекте</a>
+            <a href="{{ route('about_project') }}" class="nav-link">О проекте</a>
 
             @guest
                 <a href="#" class="btn ghost login">Войти</a>

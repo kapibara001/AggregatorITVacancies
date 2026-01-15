@@ -8,10 +8,7 @@
                 {{-- salary from-to  --}}
             </div>
             <div class="vacancy-city">
-
-            </div>
-            <div class="">
-
+                
             </div>
         </div>
     </div>
