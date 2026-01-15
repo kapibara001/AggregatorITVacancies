@@ -33,11 +33,15 @@ class MainpageController extends Controller {
 
 
         $queryString = http_build_query($params);
-        $response = file_get_contents("$APIURI?$queryString");
+        $response = file_get_contents("$APIURI?$queryString", false, $context);
+
         if ($response === false) {
             return view('mainpage', $info="Данные не получены.");
         } 
 
-        return view('mainpage');
+        // return view('mainpage', compact('response'));
+        return view('mainpage', [
+            'data' => $response,
+        ]);
     }
 }
