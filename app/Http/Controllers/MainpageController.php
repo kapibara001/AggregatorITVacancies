@@ -7,23 +7,25 @@ use Illuminate\View\View;
 class MainpageController extends Controller {
     public function show_vacancies_unauthorized() {
         $APIURI = "https://api.hh.ru/vacancies";
-        $USERAGENT = "MyApp/1.0 (myemail@gmail.com)";
+        $USERAGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 (asda@gmail.com)";
 
         $page = rand(1, 95);
-        $perPage = 20;
+        $perPage = 10;
         
-        $keywords = ['IT', 'Менеджер', 'Банкир', 'Бухгалер', 'Курьер', 'Мастер', 'Лаборант', 'Специалист'];
+        $keywords = ['IT', 'Менеджер', 'Банкир', 'Бухгалтер', 'Курьер', 'Мастер', 'Лаборант', 'Специалист'];
+        $keyword = $keywords[array_rand($keywords)];
 
         $params = [
             'page' => $page,
             'per_page' => $perPage,
-            'text' => array_rand($keywords),
+            'text' => $keyword,
             'locale' => "RU",
         ];
 
         $options = [
             "http" => [
                 "method" => "GET",
+                "ignore_errors" => true,
                 "header" => "User-Agent: $USERAGENT\r\n" .
                             "Accept: application/json\r\n"
             ]
@@ -33,15 +35,23 @@ class MainpageController extends Controller {
 
 
         $queryString = http_build_query($params);
-        $response = file_get_contents("$APIURI?$queryString", false, $context);
+        $responseString = "$APIURI?$queryString";
+        $response = file_get_contents($responseString, false, $context);
+
+        echo $responseString;
+
+        $response = json_decode($response, true);
 
         if ($response === false) {
-            return view('mainpage', $info="Данные не получены.");
+            return view('mainpage', [
+                'data' => 'Данные не получены.',
+            ]);
         } 
 
         // return view('mainpage', compact('response'));
         return view('mainpage', [
-            'data' => $response,
+            'data' => $response['items'] ?? [],
+            'keyword' => $keyword,
         ]);
     }
 }

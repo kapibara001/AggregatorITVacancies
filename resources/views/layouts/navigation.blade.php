@@ -7,7 +7,7 @@
         </a>
 
         <form action="{{ route('mainPage') }}" method="GET" class="search-block" role="search" aria-label="Поиск вакансий">
-            <input type="search" name="q" value="{{ request('q') }}" placeholder="Поиск вакансий, компаний или навыков" />
+            <input type="search" name="q" value="{{ $keyword }}" placeholder="Поиск вакансий, компаний или навыков" />
             <button type="submit" class="btn search-btn">Найти</button>
         </form>
 
