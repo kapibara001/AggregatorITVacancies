@@ -24,13 +24,31 @@
                     <div class="vacancy-city">
                         {{ $vacancy['area']['name'] }}
                     </div>
-                    <a href="{{ $vacancy['apply_alternate_url'] }}">
-                        <button>
-                            <span> Подать заявку </span>
-                        </button>
-                    </a>
+                    @auth
+                        <a href="{{ $vacancy['apply_alternate_url'] }}">
+                            <button>
+                                <span> Подать заявку </span>
+                            </button>
+                        </a>   
+                    @endauth
+                    @guest
+                        <a>
+                            <button class="authbutton">
+                                <span> Подать заявку </span>
+                            </button>
+                        </a>
+                    @endguest
                 </div>
             </div>
         @endforeach
     </div>
 </div>
+
+<script>
+    document.querySelectorAll('.authbutton').forEach(btn => {
+        btn.addEventListener('click', function() {
+            showRegModal();
+        });       
+    });
+</script>
+
