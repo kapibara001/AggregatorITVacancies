@@ -3,11 +3,23 @@
         @foreach ($data as $vacancy)
             <div class="vacancy-container">
                 <div class="vacancy">
-                    <div class="vacancy-name">
+                    <div class="vacancy-name" title="{{ $vacancy['name'] }}">
                         {{ $vacancy['name'] }}
                     </div>
                     <div class="vacancy-salary">
-                        {{-- salary from-to  --}}
+                        @if(isset($vacancy['salary']) && $vacancy['salary'])
+                            @if($vacancy['salary']['from'] && $vacancy['salary']['to'])
+                                {{ number_format($vacancy['salary']['from'], 0, '.', ' ') }} - {{ number_format($vacancy['salary']['to'], 0, '.', ' ') }} {{ $vacancy['salary']['currency'] }}
+                            @elseif($vacancy['salary']['from'])
+                                от {{ number_format($vacancy['salary']['from'], 0, '.', ' ') }} {{ $vacancy['salary']['currency'] }}
+                            @elseif($vacancy['salary']['to'])
+                                до {{ number_format($vacancy['salary']['to'], 0, '.', ' ') }} {{ $vacancy['salary']['currency'] }}
+                            @else
+                                З/П не указана
+                            @endif
+                        @else
+                            З/П не указана
+                        @endif
                     </div>
                     <div class="vacancy-city">
                         {{ $vacancy['area']['name'] }}

@@ -37,9 +37,8 @@ class MainpageController extends Controller {
         $queryString = http_build_query($params);
         $responseString = "$APIURI?$queryString";
         $response = file_get_contents($responseString, false, $context);
-
-        echo $responseString;
-
+        // echo $responseString;
+        
         $response = json_decode($response, true);
 
         if ($response === false) {
@@ -52,6 +51,7 @@ class MainpageController extends Controller {
         return view('mainpage', [
             'data' => $response['items'] ?? [],
             'keyword' => $keyword,
+            'site' => 'hh.ru'
         ]);
     }
 }

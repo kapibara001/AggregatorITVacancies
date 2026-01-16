@@ -1,26 +1,33 @@
 :root {
     --container-max: 1100px;
     --gap: 16px;
-    --bg: #000;
-    --card-bg: #0f1720;
-    --text: #ffffff;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-light: #666666;
+    --primary-color: #2563eb;
+    --accent-color: #f59e0b;
+    --border-color: #e5e7eb;
+    --danger-color: #ef4444;
 }
 
 .vacancies-container {
     max-width: 100%;
-    padding: 20px 10px;
+    padding: 40px 10px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     box-sizing: border-box;
+    background: linear-gradient(135deg, #e8e8e8 0%, #ffffff 100%);
+    min-height: 100vh;
 }
 
 .vacancies-content {
     width: var(--container-max);
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: var(--gap);
-    padding: 16px;
+    gap: 19px;
+    padding: 24px;
     color: var(--text);
     box-sizing: border-box;
 }
@@ -28,51 +35,170 @@
 .vacancy-container {
     width: 100%;
     height: 100%;
-
     display: flex;
     justify-content: center;
 }
 
 .vacancy {
-    padding: 12px;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
-    height: 200px;
-    /* height: max-content; */
-    width: 150px;
-    color: black;
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+    height: auto;
+    min-height: 280px;
+    width: 100%;
+    color: var(--text);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.vacancy-name {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text);
+    line-height: 1.35;
+    display: block;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.3s ease;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border-color);
+    word-break: break-word;
+}
+
+.vacancy-name:hover {
+    display: block;
+    white-space: normal;
+}
+
+.vacancy:hover .vacancy-name {
+    color: var(--primary-color);
+}
+
+.vacancy-salary {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    margin-top: 8px;
+    color: var(--accent-color);
+    background: rgba(245, 158, 11, 0.08);
+    padding: 10px 12px;
+    border-radius: 6px;
+    border-left: 4px solid var(--accent-color);
+    text-align: center;
+}
+
+.vacancy-city {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 16px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color);
+}
+
+.vacancy-city::before {
+    content: '📍';
+    font-size: 12px;
+}
+
+.vacancy button {
+    align-self: flex-start;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1d4ed8 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    margin-top: auto;
+}
+
+.vacancy button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.3s ease;
+}
+
+.vacancy button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(37, 99, 235, 0.25);
+}
+
+.vacancy button:hover::before {
+    left: 100%;
+}
+
+.vacancy button:active {
+    transform: translateY(0);
 }
 
 
 @media (max-width: 1100px) {
     .vacancies-content { 
-        grid-template-columns: repeat(4, 1fr); 
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
     }
 }
 
 @media (max-width: 900px) {
     .vacancies-content { 
-        grid-template-columns: repeat(3, 1fr); 
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
     }
 }
 
 @media (max-width: 768px) {
     .vacancies-container { 
-        padding: 16px 8px; 
+        padding: 24px 8px;
     }
     .vacancies-content { 
-        grid-template-columns: repeat(2, 1fr); width: 100%; 
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        gap: 16px;
+    }
+    .vacancy {
+        min-height: 220px;
     }
 }
 
 @media (max-width: 480px) {
     .vacancies-content { 
-        grid-template-columns: 1fr; padding: 8px; 
+        grid-template-columns: 1fr;
+        padding: 16px;
+        gap: 12px;
     }
-    .vacancy-item { 
-        padding: 10px; min-height: auto; 
+    .vacancy {
+        min-height: 200px;
+        padding: 16px;
+    }
+    .vacancy-name {
+        font-size: 15px;
+    }
+    .vacancy-salary {
+        font-size: 13px;
     }
 }
