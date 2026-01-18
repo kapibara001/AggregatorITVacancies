@@ -21,7 +21,7 @@
             <a href="{{ route('about_project') }}" class="nav-link">О проекте</a>
 
             @guest
-                <a href="#" class="btn ghost login">Войти</a>
+                <a href="{{ route('login_window') }}" class="btn ghost login">Войти</a>
                 <a href="#" class="btn primary register">Регистрация</a>
             @else
                 <a href="#" class="btn ghost">Профиль</a>
