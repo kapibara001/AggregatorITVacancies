@@ -42,7 +42,7 @@
         </div>
 
         <div class="reg-modal-actions">
-            <a href="#" class="reg-btn reg-btn-primary">Зарегистрироваться</a>
+            <a href="{{ route('register_window') }}" class="reg-btn reg-btn-primary">Зарегистрироваться</a>
             <a href="{{ route('login_window') }}" class="reg-btn reg-btn-secondary">Уже есть аккаунт? Войти</a>
         </div>
 

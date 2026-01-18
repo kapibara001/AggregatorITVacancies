@@ -22,7 +22,7 @@
 
             @guest
                 <a href="{{ route('login_window') }}" class="btn ghost login">Войти</a>
-                <a href="#" class="btn primary register">Регистрация</a>
+                <a href="{{ route('register_window') }}" class="btn primary register">Регистрация</a>
             @else
                 <a href="#" class="btn ghost">Профиль</a>
             @endguest
