@@ -73,7 +73,7 @@
                 <!-- Ссылки -->
                 <div class="form-links">
                     <a href="">Забыли пароль?</a>
-                    <a href="">Зарегистрироваться</a>
+                    <a href="{{ route('register_window') }}">Зарегистрироваться</a>
                 </div>
             </form>
         </div>

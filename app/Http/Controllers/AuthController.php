@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use illuminate\View\View;
 use illuminate\Http\Request;
 use illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller {
     // Процесс входа в существующий аккаунт
@@ -13,7 +14,6 @@ class AuthController extends Controller {
             'email' => 'required|max:40',
             'password' => 'required|max:40',
         ]);
-
         $email = $validated['email'];
         $password = $validated['password'];
 
@@ -24,7 +24,16 @@ class AuthController extends Controller {
 
    // Процесс регистрации нового пользователя  
     public function registration(Request $request): RedirectResponse {
-        // ...
+        $validated = $request->validate([
+            'name' => 'required|max:40|min:4|string|unique:users',
+            'email' => 'required|max:40|min:6',
+            'password' => 'required|min:8',
+        ]);
+        $name = $validated['name'];
+        $email = $validated['email'];
+        $password = $validated['password'];
+
+         
 
         return redirect('/');
     }
