@@ -25,6 +25,10 @@
                 <a href="{{ route('register_window') }}" class="btn primary register">Регистрация</a>
             @else
                 <a href="#" class="btn ghost">Профиль</a>
+                <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                    @csrf
+                    <button type="submit" class="btn ghost">Выйти</button>
+                </form>
             @endguest
         </nav>
     </div>

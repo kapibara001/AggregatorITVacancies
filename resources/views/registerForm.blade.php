@@ -83,6 +83,7 @@
                         class="form-control @error('password_confirmation') is-invalid @enderror"
                         required
                     >
+                    <span id="password-match-error" class="error-message" style="display: none;">Пароли не совпадают</span>
                     @error('password_confirmation')
                         <span class="error-message">{{ $message }}</span>
                     @enderror
@@ -100,7 +101,7 @@
                 </div>
 
                 <!-- Кнопка регистрации -->
-                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                <button type="submit" class="btn btn-primary" id="submit-btn">Зарегистрироваться</button>
 
                 <!-- Ссылка -->
                 <div class="form-links">
@@ -109,5 +110,39 @@
             </form>
         </div>
     </div>
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const passwordConfirmInput = document.getElementById('password_confirmation');
+        const passwordMatchError = document.getElementById('password-match-error');
+        const submitBtn = document.getElementById('submit-btn');
+        const registerForm = document.querySelector('form');
+
+        // Проверка совпадения паролей при вводе
+        function checkPasswordsMatch() {
+            if (passwordConfirmInput.value && passwordInput.value !== passwordConfirmInput.value) {
+                passwordMatchError.style.display = 'block';
+                passwordConfirmInput.classList.add('is-invalid');
+                submitBtn.disabled = true;
+                return false;
+            } else {
+                passwordMatchError.style.display = 'none';
+                passwordConfirmInput.classList.remove('is-invalid');
+                submitBtn.disabled = false;
+                return true;
+            }
+        }
+
+        passwordInput.addEventListener('input', checkPasswordsMatch);
+        passwordConfirmInput.addEventListener('input', checkPasswordsMatch);
+
+        // Проверка перед отправкой формы
+        registerForm.addEventListener('submit', function(e) {
+            if (!checkPasswordsMatch()) {
+                e.preventDefault();
+                alert('Пароли не совпадают!');
+            }
+        });
+    </script>
 </body>
 </html>
