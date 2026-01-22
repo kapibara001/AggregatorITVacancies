@@ -24,3 +24,4 @@ Route::post('/register', [AuthController::class, 'registration'])->name('registr
 
 // Разлогинивание пользователя
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+

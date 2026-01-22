@@ -44,7 +44,7 @@
 
 .search-block {
   flex: 1;
-  max-width: 640px;
+  max-width: 400px;
   display: flex;
   gap: 8px;
   align-items: center;
