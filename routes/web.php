@@ -7,7 +7,7 @@ use App\Http\Controllers\Regunautorizeduser;
 use App\Http\Controllers\AuthController;
 
 // Главная страница
-Route::get('/', [MainpageController::class, 'show_vacancies_unauthorized'])->name('mainPage');
+Route::get('/', [MainpageController::class, 'show_vacancies'])->name('mainPage');
 
 // Окно "О проекте"
 Route::get('/about', AboutProjController::class)->name('about_project');

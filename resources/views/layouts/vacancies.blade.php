@@ -24,6 +24,9 @@
                     <div class="vacancy-city">
                         {{ $vacancy['area']['name'] }}
                     </div>
+                    <div class="site-cont">
+                        {{ $site }}
+                    </div>
                     @auth
                         <a href="{{ $vacancy['apply_alternate_url'] }}">
                             <button>
@@ -34,7 +37,7 @@
                     @guest
                         <a>
                             <button class="authbutton">
-                                <span> Подать заявку </span>
+                                <span> Подать заявку {{ $vacancy['published_at'] }}</span>
                             </button>
                         </a>
                     @endguest
@@ -42,7 +45,29 @@
             </div>
         @endforeach
     </div>
-    
+    <div class="pagination-container">
+        <div class="pagination">
+            <a href="#" class="pagination-btn pagination-prev" title="Предыдущая страница">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </a>
+
+            <span class="pagination-page active">1</span>
+            <a href="#" class="pagination-page">2</a>
+            <a href="#" class="pagination-page">3</a>
+            <a href="#" class="pagination-page">4</a>
+            <a href="#" class="pagination-page">5</a>
+            <span class="pagination-dots">...</span>
+            <a href="#" class="pagination-page">10</a>
+
+            <a href="#" class="pagination-btn pagination-next" title="Следующая страница">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </a>
+        </div>
+    </div>
 </div>
 
 <script>

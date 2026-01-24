@@ -15,8 +15,9 @@
     max-width: 100%;
     padding: 40px 10px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     box-sizing: border-box;
     background: linear-gradient(135deg, #e8e8e8 0%, #ffffff 100%);
     min-height: 100vh;
@@ -97,7 +98,7 @@
     text-align: center;
 }
 
-.vacancy-city {
+.vacancy-city, .site-cont {
     font-size: 13px;
     color: var(--text-light);
     margin-bottom: 16px;
@@ -200,5 +201,97 @@
     }
     .vacancy-salary {
         font-size: 13px;
+    }
+}
+
+.pagination-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px 10px;
+    box-sizing: border-box;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card-bg);
+    padding: 16px 20px;
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+    flex-wrap: wrap;
+    max-width: fit-content;
+}
+
+.pagination-page,
+.pagination-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: transparent;
+}
+
+.pagination-page:hover,
+.pagination-btn:hover:not(:disabled) {
+    background: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.pagination-page.active {
+    background: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.pagination-btn {
+    border: 2px solid var(--border-color);
+    color: var(--text-light);
+}
+
+.pagination-btn:hover:not(:disabled) {
+    color: #ffffff;
+}
+
+.pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.pagination-dots {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    font-weight: 600;
+    margin: 0 4px;
+}
+
+@media (max-width: 768px) {
+    .pagination {
+        padding: 12px 16px;
+        gap: 6px;
+    }
+    
+    .pagination-page,
+    .pagination-btn {
+        min-width: 36px;
+        height: 36px;
+        font-size: 12px;
     }
 }

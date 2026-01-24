@@ -6,10 +6,24 @@
             <span class="brand">G<span>OK</span>KA</span>
         </a>
 
-        <form action="{{ route('mainPage') }}" method="GET" class="search-block" role="search" aria-label="Поиск вакансий">
-            <input type="search" name="q" placeholder="Поиск вакансий, компаний или навыков" />
-            <button type="submit" class="btn search-btn">Найти</button>
-        </form>
+        @auth
+            <form action="{{ route('mainPage') }}" method="GET" class="search-block" role="search" aria-label="Поиск вакансий">
+                <input type="search" name="q" placeholder="Поиск вакансий, компаний или навыков" />
+                <button type="submit" class="btn search-btn">Найти</button>
+            </form>       
+        @endauth
+        @guest
+            <form class="search-block" role="search" aria-label="Поиск вакансий" onsubmit="guest_user_search(); return false;">
+                <input type="search" name="q" value="{{ $keyword }}" placeholder="Поиск вакансий, компаний или навыков" />
+                <button type="submit" class="btn search-btn">Найти</button>
+            </form>
+
+            <script>
+                function guest_user_search() {
+                    showRegModal(); 
+                }
+            </script>
+        @endguest
 
         <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Открыть меню">
             <span class="hamburger" aria-hidden="true"></span>
