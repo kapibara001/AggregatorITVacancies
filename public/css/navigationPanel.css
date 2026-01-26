@@ -80,6 +80,18 @@
   cursor: pointer;
 }
 
+.filter-btn {
+  height: 34px;
+  border-radius: 10px;
+  aspect-ratio: 1/1;
+  background-color: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.filter-btn img:hover {
+  cursor: pointer;
+}
+
 .links {
   display: flex;
   gap: 14px;

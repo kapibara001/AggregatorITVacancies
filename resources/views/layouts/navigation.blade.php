@@ -9,12 +9,22 @@
         @auth
             <form action="{{ route('mainPage') }}" method="GET" class="search-block" role="search" aria-label="Поиск вакансий">
                 <input type="search" name="q" placeholder="Поиск вакансий, компаний или навыков" />
+                <div class="filter-btn">
+                    <div style="width: 34px; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center;" id="filter-btn">
+                        <img src="{{ asset('images/filter_icon_136624.svg') }}" alt="Фильтр" style="width: 28px; aspect-ratio: 1/1">
+                    </div>
+                </div>
                 <button type="submit" class="btn search-btn">Найти</button>
-            </form>       
+            </form>
         @endauth
         @guest
             <form class="search-block" role="search" aria-label="Поиск вакансий" onsubmit="guest_user_search(); return false;">
                 <input type="search" name="q" value="{{ $keyword }}" placeholder="Поиск вакансий, компаний или навыков" />
+                <div class="filter-btn">
+                    <div style="width: 34px; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center;" id="filter-btn">
+                        <img src,="{{ asset('images/filter_icon_136624.svg') }}" alt="Фильтр" style="width: 28px; aspect-ratio: 1/1">
+                    </div>
+                </div>
                 <button type="submit" class="btn search-btn">Найти</button>
             </form>
 

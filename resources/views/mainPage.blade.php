@@ -15,6 +15,8 @@
     <div class="container">
         {{-- Modal for registration/login --}}
         @include('layouts.winforreg')
+        {{-- Filters modal --}}
+        @include('layouts.filters')
         {{-- navpanel --}}
         @include('layouts.navigation')  
         <!-- Vacancies -->

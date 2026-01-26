@@ -14,22 +14,50 @@ class MainpageController extends Controller {
         
         if (Auth::check()) {
             $perPage = 20;
-            $page = 1;
+            $page = $request->input('page', 1);
             $keyword = $request->input('q');
 
-            if ($keyword == null) {
-                $params = [
-                    'page' => $page,
-                    'per_page' => $perPage,
-                    'locale' => "RU",
-                ];
-            } else {
-                $params = [
-                    'page' => $page,
-                    'per_page' => $perPage,
-                    'text' => $keyword,
-                    'locale' => "RU",
-                ];
+            $params = [
+                'page' => $page,
+                'per_page' => $perPage,
+                'locale' => "RU",
+            ];
+
+            if ($keyword != null) {
+                $params['text'] = $keyword;
+            }
+
+            if ($request->input('salary_from')) {
+                $params['salary_from'] = (int)$request->input('salary_from');
+            }
+
+            if ($request->input('salary_to')) {
+                $params['salary_to'] = (int)$request->input('salary_to');
+            }
+
+            if ($request->input('currency')) {
+                $params['currency'] = $request->input('currency');
+            }
+
+            if ($request->input('city')) {
+                $params['area'] = $request->input('city');
+            }
+            
+            $experiences = $request->input('experience', []);
+            if (!empty($experiences)) {
+                $params['experience'] = $experiences[0];
+            }
+
+            // Add employment type filter
+            $employments = $request->input('employment', []);
+            if (!empty($employments)) {
+                $params['employment'] = $employments;
+            }
+
+            // Add schedule filter
+            $schedules = $request->input('schedule', []);
+            if (!empty($schedules)) {
+                $params['schedule'] = $schedules;
             }
             
         } else {
