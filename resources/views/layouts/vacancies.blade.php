@@ -1,49 +1,65 @@
 <div class="vacancies-container">
     <div class="vacancies-content">
-        @foreach ($data as $vacancy)
-            <div class="vacancy-container">
-                <div class="vacancy">
-                    <div class="vacancy-name" title="{{ $vacancy['name'] }}">
-                        {{ $vacancy['name'] }}
-                    </div>
-                    <div class="vacancy-salary">
-                        @if(isset($vacancy['salary']) && $vacancy['salary'])
-                            @if($vacancy['salary']['from'] && $vacancy['salary']['to'])
-                                {{ number_format($vacancy['salary']['from'], 0, '.', ' ') }} - {{ number_format($vacancy['salary']['to'], 0, '.', ' ') }} {{ $vacancy['salary']['currency'] }}
-                            @elseif($vacancy['salary']['from'])
-                                от {{ number_format($vacancy['salary']['from'], 0, '.', ' ') }} {{ $vacancy['salary']['currency'] }}
-                            @elseif($vacancy['salary']['to'])
-                                до {{ number_format($vacancy['salary']['to'], 0, '.', ' ') }} {{ $vacancy['salary']['currency'] }}
+        <div class="filters-cont">
+            @include('layouts.filters')
+        </div>
+
+        <div class="vacancies-cont">
+            @foreach ($data as $vacancy)
+                <div class="vacancy-container">
+                    <div class="vacancy">
+                        <div class="vacancy-published-time">
+                            
+                        </div>
+                        <div class="vacancy-name" title="{{ $vacancy['name'] }}">
+                            {{ $vacancy['name'] }}
+                        </div>
+                        <div class="vacancy-salary">
+                            @if(isset($vacancy['salary']) && $vacancy['salary'])
+                                @if($vacancy['salary']['from'] && $vacancy['salary']['to'])
+                                    {{ number_format($vacancy['salary']['from'], 0, '.', ' ') }} - {{ number_format($vacancy['salary']['to'], 0, '.', ' ') }} {{ $vacancy['salary']['currency'] }}
+                                @elseif($vacancy['salary']['from'])
+                                    от {{ number_format($vacancy['salary']['from'], 0, '.', ' ') }} {{ $vacancy['salary']['currency'] }}
+                                @elseif($vacancy['salary']['to'])
+                                    до {{ number_format($vacancy['salary']['to'], 0, '.', ' ') }} {{ $vacancy['salary']['currency'] }}
+                                @else
+                                    По договоренности
+                                @endif
                             @else
-                                З/П не указана
+                                По договоренности
                             @endif
-                        @else
-                            З/П не указана
-                        @endif
+                        </div>
+                        <div class="vancay-employer-name">
+                            <b>{{ $vacancy['employer']['name'] }}</b>
+                        </div>
+                        <div class="vacancy-city">
+                            {{ $vacancy['area']['name'] }}
+                        </div>
+                        <div class="vacancy-description">
+                            {{-- {{ $vacancy['description'] }} --}}
+                        </div>
+                        <div class="site-cont">
+                            {{ $site }}
+                        </div>
+                        @auth
+                            <a href="{{ $vacancy['apply_alternate_url'] }}">
+                                <button>
+                                    <span>Подать заявку</span>
+                                </button>
+                            </a>   
+                            {{--  {{ $vacancy['published_at'] }} --}}
+                        @endauth
+                        @guest
+                            <a>
+                                <button class="authbutton">
+                                    <span>Подать заявку</span>
+                                </button>
+                            </a>
+                        @endguest
                     </div>
-                    <div class="vacancy-city">
-                        {{ $vacancy['area']['name'] }}
-                    </div>
-                    <div class="site-cont">
-                        {{ $site }}
-                    </div>
-                    @auth
-                        <a href="{{ $vacancy['apply_alternate_url'] }}">
-                            <button>
-                                <span> Подать заявку </span>
-                            </button>
-                        </a>   
-                    @endauth
-                    @guest
-                        <a>
-                            <button class="authbutton">
-                                <span> Подать заявку {{ $vacancy['published_at'] }}</span>
-                            </button>
-                        </a>
-                    @endguest
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
     <div class="pagination-container">
         <div class="pagination">
@@ -76,5 +92,14 @@
             showRegModal();
         });       
     });
+
+    // Reset filters in sidebar
+    const resetFiltersBtn = document.getElementById('reset-filters-sidebar');
+    if (resetFiltersBtn) {
+        resetFiltersBtn.addEventListener('click', function() {
+            document.getElementById('filters-sidebar-form').reset();
+            window.location.href = "{{ route('mainPage') }}";
+        });
+    }
 </script>
 

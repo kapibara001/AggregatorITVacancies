@@ -10,13 +10,12 @@
     <link rel="stylesheet" href="{{ asset('css/mainPage.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footerPanel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vacancies.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/filters.css') }}">
 </head>
 <body>
     <div class="container">
         {{-- Modal for registration/login --}}
         @include('layouts.winforreg')
-        {{-- Filters modal --}}
-        @include('layouts.filters')
         {{-- navpanel --}}
         @include('layouts.navigation')  
         <!-- Vacancies -->
